@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Palette directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root { --page: #F2F2F5; --text: #111114; }
+  @media (prefers-color-scheme: dark) { :root { --page: #050505; --text: #F5F5F7; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 24px 16px; background: var(--page); color: var(--text);
+         font-family: Inter, system-ui, sans-serif; }
+  h1 { font-size: 22px; letter-spacing: -0.02em; margin: 0 0 20px; }
+  .directions { display: grid; gap: 28px; }
+  .dir h2 { margin: 0 0 4px; font-size: 18px; letter-spacing: -0.01em; }
+  .dir p { margin: 0 0 12px; opacity: .7; font-size: 14px; }
+  .phones { display: flex; gap: 14px; flex-wrap: wrap; }
+  .phone { width: 260px; max-width: 100%; border-radius: 32px; padding: 18px; display: grid; gap: 12px; }
+  .card { border-radius: 22px; padding: 16px; border: 1px solid; }
+  .card b { display: block; font-size: 17px; letter-spacing: -0.01em; }
+  .card span { font-size: 13px; }
+  .row { display: flex; gap: 8px; align-items: center; }
+  .chip { border-radius: 999px; padding: 6px 12px; font-size: 12px; font-weight: 600; }
+  .btn { border: 0; border-radius: 999px; padding: 14px 20px; font: 600 15px Inter, sans-serif;
+         width: 100%; cursor: pointer; transition: transform .18s cubic-bezier(.34,1.56,.64,1); }
+  .btn:active { transform: scale(.97); }
+  .sw { display: flex; gap: 6px; flex-wrap: wrap; }
+  .sw i { width: 26px; height: 26px; border-radius: 8px; border: 1px solid #8884; }
+  @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+</style>
+</head>
+<body>
+<h1>Brand directions</h1>
+<div class="directions" id="root"></div>
+<script>
+  // Replace with: [{ name, why, light: {...tokens}, dark: {...tokens} }, ...]
+  const DIRECTIONS = __TOKENS_JSON__;
+
+  const phone = (t, label) => `
+    <div class="phone" style="background:${t.canvas}">
+      <div class="sw">${["brand","brand-strong","brand-soft","surface","ink"].map(k => `<i title="${k} ${t[k]}" style="background:${t[k]}"></i>`).join("")}</div>
+      <div class="card" style="background:${t.surface};border-color:${t.hairline};color:${t.ink}">
+        <b>Good morning</b>
+        <span style="color:${t["ink-muted"]}">${label} · 3 things today</span>
+      </div>
+      <div class="row">
+        <span class="chip" style="background:${t["brand-soft"]};color:${t["brand-strong"]}">Selected</span>
+        <span class="chip" style="background:${t["surface-raised"]};color:${t["ink-muted"]};border:1px solid ${t.hairline}">Other</span>
+      </div>
+      <button class="btn" style="background:${t.brand};color:${t["on-brand"]}">Get started</button>
+    </div>`;
+
+  document.getElementById("root").innerHTML = DIRECTIONS.map((d, i) => `
+    <section class="dir">
+      <h2>${String.fromCharCode(65 + i)}. ${d.name} <small style="opacity:.6">${d.light.brand}</small></h2>
+      <p>${d.why}</p>
+      <div class="phones">${phone(d.light, "Light")}${phone(d.dark, "Dark")}</div>
+    </section>`).join("");
+</script>
+</body>
+</html>

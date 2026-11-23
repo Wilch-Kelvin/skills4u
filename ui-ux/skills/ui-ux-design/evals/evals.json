@@ -1,0 +1,23 @@
+{
+  "skill_name": "ui-ux-design",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "build a settings screen for this app",
+      "expected_output": "Looks for DESIGN.md, design-system/MASTER.md, CLAUDE.md design notes and token files first and follows them; uses tokens, not raw hex; builds loading, empty and error states; checks light and dark at a small phone width; names any gaps it filled.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "this landing page looks generic, make it better",
+      "expected_output": "Names the specific template smells it found, proposes three distinct directions (style family, brand colour, type pairing, signature detail) instead of tweaking shadows, checks contrast with scripts/contrast.py, and offers to record the chosen direction in DESIGN.md.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "we're starting a new habit tracker app, pick our colours and fonts",
+      "expected_output": "Gathers product type, audience and mood words; proposes three directions with token sets for light and dark; fills assets/palette-preview.html; runs the contrast script on every text pair; writes DESIGN.md from the template after the user picks.",
+      "files": []
+    }
+  ]
+}
