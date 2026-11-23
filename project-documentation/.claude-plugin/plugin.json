@@ -1,0 +1,8 @@
+{
+  "name": "project-documentation",
+  "version": "1.0.0",
+  "description": "Writes a professional Word document and a GitHub README for any project, with diagrams, checked against the repo before anything is written.",
+  "author": { "name": "Kelvin Wilch" },
+  "license": "MIT",
+  "keywords": ["docs", "readme", "docx", "documentation", "diagrams"]
+}

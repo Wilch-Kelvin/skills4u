@@ -1,0 +1,23 @@
+{
+  "skill_name": "project-documentation",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "document this project",
+      "expected_output": "Reads the repo (README, docs, manifests, CI, config, schema, source) first; writes docs/<Project>-Documentation.docx (cover, contents, heading styles, page numbers, accent-colour headings, architecture diagram with caption and alt text, only sections with evidence) and docs/README.md (GitHub order, links to the .docx, credit to the verified author); diagram sources in docs/diagrams/; renders and inspects every page; says the root README would win on GitHub if one exists; reports what was verified.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I need a professional Word doc about the app for my lecturer, plus a GitHub readme",
+      "expected_output": "Same two files in docs/, with a sign-in or sync flow diagram where the project has one; env var names only; no invented features, commands or authors; no QA images or build tools committed.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "the docs are out of date, redo them",
+      "expected_output": "Lists what is stale in the existing docs against the code, then regenerates both docs/ files and diagrams rather than patching only the README; keeps the existing root README unless the user agrees to change it.",
+      "files": []
+    }
+  ]
+}
