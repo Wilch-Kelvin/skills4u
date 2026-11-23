@@ -1,6 +1,8 @@
 {
   "name": "kelvin-skills",
-  "owner": { "name": "Kelvin Wilch" },
+  "owner": {
+    "name": "Kelvin Wilch"
+  },
   "metadata": {
     "description": "General-purpose Claude Code skills and agents for documenting projects and designing distinctive, accessible UI.",
     "version": "1.0.0"
@@ -12,7 +14,13 @@
       "description": "Writes a professional Word document and a GitHub README for any project, verified against the repo.",
       "version": "1.0.0",
       "category": "documentation",
-      "keywords": ["docs", "readme", "docx", "documentation", "diagrams"]
+      "keywords": [
+        "docs",
+        "readme",
+        "docx",
+        "documentation",
+        "diagrams"
+      ]
     },
     {
       "name": "ui-ux",
@@ -20,7 +28,14 @@
       "description": "A non-generic UI/UX design skill plus designer and reviewer agents, for web and mobile.",
       "version": "1.0.0",
       "category": "design",
-      "keywords": ["ui", "ux", "design-system", "accessibility", "review", "mobile"]
+      "keywords": [
+        "ui",
+        "ux",
+        "design-system",
+        "accessibility",
+        "review",
+        "mobile"
+      ]
     }
   ]
 }

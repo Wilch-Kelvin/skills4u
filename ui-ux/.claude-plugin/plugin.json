@@ -2,7 +2,18 @@
   "name": "ui-ux",
   "version": "1.0.0",
   "description": "A non-generic UI/UX design skill (design-system lookup, distinctive directions, tokens with a contrast checker, priority-ranked checklist) plus ui-ux-designer and ui-ux-reviewer agents.",
-  "author": { "name": "Kelvin Wilch" },
+  "author": {
+    "name": "Kelvin Wilch"
+  },
   "license": "MIT",
-  "keywords": ["ui", "ux", "design-system", "accessibility", "review", "mobile"]
+  "keywords": [
+    "ui",
+    "ux",
+    "design-system",
+    "accessibility",
+    "review",
+    "mobile"
+  ],
+  "repository": "https://github.com/Wilch-Kelvin/skills4u",
+  "homepage": "https://github.com/Wilch-Kelvin/skills4u/tree/main/ui-ux"
 }

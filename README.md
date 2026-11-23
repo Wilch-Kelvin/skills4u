@@ -1,4 +1,4 @@
-# Skills
+# skills4u
 
 Claude Code skills and agents for two jobs that usually get rushed:
 **documenting a project properly** and **designing UI that doesn't look like
@@ -18,7 +18,7 @@ In Claude Code, add this repo as a plugin marketplace, then install what you
 want:
 
 ```text
-/plugin marketplace add <github-user>/<repo>
+/plugin marketplace add Wilch-Kelvin/skills4u
 ```
 
 ```text
@@ -38,15 +38,15 @@ Clone the repo, then copy the folders you want into your user folder (all
 projects) or a project's `.claude/` folder (that project only):
 
 ```bash
-git clone https://github.com/<github-user>/<repo>.git
+git clone https://github.com/Wilch-Kelvin/skills4u.git
 ```
 
 ```bash
-cp -R <repo>/project-documentation/skills/project-documentation ~/.claude/skills/
+cp -R skills4u/project-documentation/skills/project-documentation ~/.claude/skills/
 ```
 
 ```bash
-cp -R <repo>/ui-ux/skills/ui-ux-design ~/.claude/skills/ && cp <repo>/ui-ux/agents/*.md ~/.claude/agents/
+cp -R skills4u/ui-ux/skills/ui-ux-design ~/.claude/skills/ && cp skills4u/ui-ux/agents/*.md ~/.claude/agents/
 ```
 
 The skills use the open `SKILL.md` format, so other tools that read Agent

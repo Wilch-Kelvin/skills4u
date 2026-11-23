@@ -2,7 +2,17 @@
   "name": "project-documentation",
   "version": "1.0.0",
   "description": "Writes a professional Word document and a GitHub README for any project, with diagrams, checked against the repo before anything is written.",
-  "author": { "name": "Kelvin Wilch" },
+  "author": {
+    "name": "Kelvin Wilch"
+  },
   "license": "MIT",
-  "keywords": ["docs", "readme", "docx", "documentation", "diagrams"]
+  "keywords": [
+    "docs",
+    "readme",
+    "docx",
+    "documentation",
+    "diagrams"
+  ],
+  "repository": "https://github.com/Wilch-Kelvin/skills4u",
+  "homepage": "https://github.com/Wilch-Kelvin/skills4u/tree/main/project-documentation"
 }
