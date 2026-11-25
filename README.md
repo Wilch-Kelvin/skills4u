@@ -66,6 +66,40 @@ cp -R skills4u/wiki-health/skills/wiki-health skills4u/inventory-auditor/skills/
 The skills use the open `SKILL.md` format, so other tools that read Agent
 Skills can load them too. The two agents are Claude Code subagent files.
 
+### Codex
+
+Copy the complete skill folders into the shared user skills directory. To
+install them for one project instead, use that project's `.agents/skills/`
+directory. Start a new Codex session after installing.
+
+```bash
+mkdir -p ~/.agents/skills
+cp -R skills4u/project-documentation/skills/project-documentation ~/.agents/skills/
+cp -R skills4u/ui-ux/skills/ui-ux-design ~/.agents/skills/
+cp -R skills4u/wiki-health/skills/wiki-health ~/.agents/skills/
+cp -R skills4u/inventory-auditor/skills/inventory-auditor ~/.agents/skills/
+```
+
+`inventory-auditor` can inventory Codex skills, but its usage counts come from
+Claude Code transcripts and do not measure Codex usage.
+
+### Gemini CLI
+
+Install each skill from this repository. Use `--scope user` for all projects,
+or change it to `--scope workspace` to install in the current project.
+
+```bash
+gemini skills install https://github.com/Wilch-Kelvin/skills4u.git --path project-documentation/skills/project-documentation --scope user
+gemini skills install https://github.com/Wilch-Kelvin/skills4u.git --path ui-ux/skills/ui-ux-design --scope user
+gemini skills install https://github.com/Wilch-Kelvin/skills4u.git --path wiki-health/skills/wiki-health --scope user
+gemini skills install https://github.com/Wilch-Kelvin/skills4u.git --path inventory-auditor/skills/inventory-auditor --scope user
+```
+
+Gemini CLI can use `inventory-auditor` to inventory skills, but its usage
+counts come from Claude Code transcripts and do not measure Gemini usage. The
+`ui-ux-designer` and `ui-ux-reviewer` files are Claude Code agents; these
+commands install the `ui-ux-design` skill only.
+
 ## What each one does
 
 ### project-documentation
