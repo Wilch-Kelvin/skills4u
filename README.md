@@ -116,36 +116,64 @@ Jetpack Compose.
 
 They work well as a loop: design, review, apply the top fixes, review again.
 
+Optional extras the agents use when present: the Figma MCP server, a browser
+tool for screenshots, and the iOS Simulator or Android emulator tools.
+
 ### wiki-health
 
-Audits a Markdown wiki, Obsidian vault or docs folder without reading it all
-into context. A bundled script measures every file against a size budget,
-follows every link (wikilinks, Markdown links, `#heading` anchors) and finds
-notes nothing links to; the agent turns its JSON into a numbered fix plan:
-archive long logs word for word, split big notes at their headings, trim
-`CLAUDE.md` / `AGENTS.md`, move `SKILL.md` detail into `references/`, link
-orphans from their nearest hub, and correct broken links. Nothing changes
-until you approve.
+Keeps a Markdown wiki, Obsidian vault or docs folder small and connected,
+without reading it all into context. A bundled script does the measuring;
+the agent turns its report into a plan:
 
-Agent context files get tighter default budgets because they're loaded often.
-Add a `.wiki-health.json` to set your own budgets by path or frontmatter
-`type:`, plus inbox, template and ignore folders.
+1. **Measure** every Markdown file against a size budget. Agent context files
+   get tighter ones because they're loaded often: `CLAUDE.md`, `AGENTS.md` and
+   `GEMINI.md` 8 KB, `SKILL.md` 20 KB, subagent files 12 KB, everything else
+   300 lines / 12 KB.
+2. **Follow every link**: wikilinks (`[[Note]]`, `[[Note#Heading]]`),
+   Markdown links and `#heading` anchors, with a close-match suggestion for
+   each broken one. Finds notes nothing links to and names the hub that
+   should link them.
+3. **Plan the fixes** as a numbered checklist, most valuable first: archive
+   long logs word for word, split big notes at their headings, trim agent
+   context files, move `SKILL.md` detail into `references/`, link orphans and
+   correct broken links.
+4. **Wait for approval**, apply only the steps you pick, never delete a note,
+   and show the before and after summary.
+
+Add a `.wiki-health.json` to the folder to set your own budgets by path or by
+frontmatter `type:` (for example `hub`, `log`), and to name your inbox,
+template and ignored folders. The format is in
+[`references/config.md`](wiki-health/skills/wiki-health/references/config.md).
+
+Includes `scripts/audit_wiki.py` (standard-library Python 3.9+, JSON or
+`--text` output, `--strict` for CI) and its unit tests.
 
 ### inventory-auditor
 
-Audits the skills, subagents and hooks your agent loads. A bundled script
-measures how many description bytes load on every turn, compares each body to
-a budget, counts real uses from Claude Code session transcripts, and flags
-duplicate names. The agent then tests overlapping descriptions with
-should-route and near-miss phrases, and gives every item one verdict (keep,
-refactor, merge, defer or retire) backed by a number or a trigger result. It
-never retires something just for zero uses, and it changes nothing until you
-approve.
+Audits the skills, subagents and hooks your agent loads, because every
+description costs context on every turn and overlapping ones send requests to
+the wrong place. Read first, propose second:
 
-Point `--extra` at a plugin's folder to include installed plugins.
+1. **Measure** with a bundled script: every skill and agent in `.claude/`,
+   `.agents/skills` and `~/.claude/`, plus any plugin folder you pass with
+   `--extra`. For each one it reports the description bytes loaded every turn,
+   the body size against a budget (`SKILL.md` 20 KB, agents 12 KB), and real
+   use counts from Claude Code session transcripts, with their date range.
+2. **Flag** duplicate names (the same skill twice for one agent, so either may
+   load), copies for different agents that have drifted, missing or overlong
+   descriptions, and hook events in use.
+3. **Test overlap** by writing should-route and near-miss phrases for each
+   similar pair. Similar wording alone never counts as a duplicate.
+4. **Propose** one verdict per item (keep, refactor, merge, defer or retire),
+   each backed by a number or a trigger result, plus the bytes each change
+   saves. It never retires something just for zero uses, and it changes
+   nothing until you approve.
 
-Optional extras the agents use when present: the Figma MCP server, a browser
-tool for screenshots, and the iOS Simulator or Android emulator tools.
+Outputs `inventory.json` (schema in
+[`references/schema.md`](inventory-auditor/skills/inventory-auditor/references/schema.md))
+and `inventory-report.md`. Includes `scripts/inventory.py` (standard-library
+Python 3.9+) and its unit tests. Usage counts need Claude Code transcripts;
+without them it says usage is unknown rather than zero.
 
 ## Repo layout
 
