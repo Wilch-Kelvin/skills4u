@@ -1,0 +1,23 @@
+{
+  "skill_name": "inventory-auditor",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Audit my skills and agents. Which ones cost the most context, which overlap, and which should I keep, merge or retire?",
+      "expected_output": "Runs scripts/inventory.py and bases byte and usage numbers on its output. Writes trigger phrases for overlapping pairs. Gives every item its own row with exactly one of KEEP, REFACTOR, MERGE, DEFER or RETIRE and a number or trigger result as evidence. Does not retire an item only for zero uses. Changes no files and ends with a numbered change list awaiting approval.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Audit my skills, but there are no session transcripts on this machine.",
+      "expected_output": "Runs the script, reports that usage is unknown (not zero) with the reason from transcripts.error, and marks no item RETIRE or unused because of it.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Both wiki-health and the inventory auditor say they audit skills. Are they duplicates? Should I merge them?",
+      "expected_output": "Writes should-route and near-miss phrases for both skills and says which each should reach. Bases any verdict on those trigger tests, not on similar wording, and if the overlap is real proposes a concrete description edit (narrowing one skill) instead of deleting either.",
+      "files": []
+    }
+  ]
+}
