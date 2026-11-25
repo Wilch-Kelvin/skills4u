@@ -1,0 +1,19 @@
+{
+  "name": "inventory-auditor",
+  "version": "1.0.0",
+  "description": "Audits the skills, subagents and hooks your agent loads: context cost per turn, real usage from transcripts, duplicate and overlapping triggers, with evidence-backed keep, refactor, merge, defer or retire verdicts.",
+  "author": {
+    "name": "Kelvin Wilch"
+  },
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "agents",
+    "context",
+    "audit",
+    "routing",
+    "hooks"
+  ],
+  "repository": "https://github.com/Wilch-Kelvin/skills4u",
+  "homepage": "https://github.com/Wilch-Kelvin/skills4u/tree/main/inventory-auditor"
+}
