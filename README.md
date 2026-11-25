@@ -1,14 +1,16 @@
 # skills4u
 
-Claude Code skills and agents for two jobs that usually get rushed:
-**documenting a project properly** and **designing UI that doesn't look like
-a template**. They're general-purpose: drop them into any project, web or
-mobile.
+Claude Code skills and agents for jobs that usually get rushed:
+**documenting a project properly**, **designing UI that doesn't look like a
+template**, and **keeping your docs and agent setup healthy** as they grow.
+They're general-purpose: drop them into any project, web or mobile.
 
 | Plugin | What you get | Use it for |
 |---|---|---|
 | [`project-documentation`](project-documentation/) | Skill: `project-documentation` | "Document this project", "write a README", "a Word doc about the app for my lecturer or client" |
 | [`ui-ux`](ui-ux/) | Skill: `ui-ux-design`. Agents: `ui-ux-designer`, `ui-ux-reviewer` | "Design the onboarding", "this looks generic", "pick our colours", "review this screen" |
+| [`wiki-health`](wiki-health/) | Skill: `wiki-health` | "Audit my vault", "which notes are too long?", "find broken links", "is my CLAUDE.md too big?" |
+| [`inventory-auditor`](inventory-auditor/) | Skill: `inventory-auditor` | "Audit my skills", "which skills overlap?", "what am I never using?", "should I merge these two?" |
 
 ## Install
 
@@ -29,6 +31,14 @@ want:
 /plugin install ui-ux@kelvin-skills
 ```
 
+```text
+/plugin install wiki-health@kelvin-skills
+```
+
+```text
+/plugin install inventory-auditor@kelvin-skills
+```
+
 Plugin skills are namespaced, so they may appear as
 `project-documentation:project-documentation` and `ui-ux:ui-ux-design`.
 
@@ -47,6 +57,10 @@ cp -R skills4u/project-documentation/skills/project-documentation ~/.claude/skil
 
 ```bash
 cp -R skills4u/ui-ux/skills/ui-ux-design ~/.claude/skills/ && cp skills4u/ui-ux/agents/*.md ~/.claude/agents/
+```
+
+```bash
+cp -R skills4u/wiki-health/skills/wiki-health skills4u/inventory-auditor/skills/inventory-auditor ~/.claude/skills/
 ```
 
 The skills use the open `SKILL.md` format, so other tools that read Agent
@@ -102,13 +116,41 @@ Jetpack Compose.
 
 They work well as a loop: design, review, apply the top fixes, review again.
 
+### wiki-health
+
+Audits a Markdown wiki, Obsidian vault or docs folder without reading it all
+into context. A bundled script measures every file against a size budget,
+follows every link (wikilinks, Markdown links, `#heading` anchors) and finds
+notes nothing links to; the agent turns its JSON into a numbered fix plan:
+archive long logs word for word, split big notes at their headings, trim
+`CLAUDE.md` / `AGENTS.md`, move `SKILL.md` detail into `references/`, link
+orphans from their nearest hub, and correct broken links. Nothing changes
+until you approve.
+
+Agent context files get tighter default budgets because they're loaded often.
+Add a `.wiki-health.json` to set your own budgets by path or frontmatter
+`type:`, plus inbox, template and ignore folders.
+
+### inventory-auditor
+
+Audits the skills, subagents and hooks your agent loads. A bundled script
+measures how many description bytes load on every turn, compares each body to
+a budget, counts real uses from Claude Code session transcripts, and flags
+duplicate names. The agent then tests overlapping descriptions with
+should-route and near-miss phrases, and gives every item one verdict (keep,
+refactor, merge, defer or retire) backed by a number or a trigger result. It
+never retires something just for zero uses, and it changes nothing until you
+approve.
+
+Point `--extra` at a plugin's folder to include installed plugins.
+
 Optional extras the agents use when present: the Figma MCP server, a browser
 tool for screenshots, and the iOS Simulator or Android emulator tools.
 
 ## Repo layout
 
 ```text
-.claude-plugin/marketplace.json     lists both plugins
+.claude-plugin/marketplace.json     lists every plugin
 project-documentation/
   .claude-plugin/plugin.json
   skills/project-documentation/     SKILL.md, references/, evals/
@@ -116,10 +158,25 @@ ui-ux/
   .claude-plugin/plugin.json
   skills/ui-ux-design/              SKILL.md, references/, scripts/, assets/, evals/
   agents/                           ui-ux-designer.md, ui-ux-reviewer.md
+wiki-health/
+  .claude-plugin/plugin.json
+  skills/wiki-health/               SKILL.md, scripts/ (audit + tests), references/, evals/
+inventory-auditor/
+  .claude-plugin/plugin.json
+  skills/inventory-auditor/         SKILL.md, scripts/ (inventory + tests), references/, evals/
 ```
 
 Each skill has an `evals/evals.json` with example prompts and the expected
-behaviour, so you can test it after changing it.
+behaviour, so you can test it after changing it. The two audit scripts are
+standard-library Python 3.9+ with unit tests:
+
+```bash
+python3 -m unittest discover -s wiki-health/skills/wiki-health/scripts
+```
+
+```bash
+python3 -m unittest discover -s inventory-auditor/skills/inventory-auditor/scripts
+```
 
 ## Contributing
 
