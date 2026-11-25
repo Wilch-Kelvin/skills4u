@@ -1,0 +1,23 @@
+{
+  "skill_name": "wiki-health",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "how healthy is my Obsidian vault? anything too big or disconnected?",
+      "expected_output": "Runs scripts/audit_wiki.py on the vault without reading the notes first, uses .wiki-health.json if present, and reports the four sections: summary, oversized files with a remedy-based fix each (logs get an archive plan that moves entries word for word), orphans with the exact link to add, broken links with corrections. Edits nothing and ends with a numbered checklist.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "audit the docs in this repo, the agent context is getting bloated",
+      "expected_output": "Runs the audit on the repo; flags CLAUDE.md, AGENTS.md, SKILL.md or subagent files over their tighter built-in budgets with a trim or move-to-references fix; if dated plans or archives swamp the report, reruns with --ignore and says so. Proposes splits from the outline without reading whole files. No edits before approval.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "apply steps 1 and 2 of the wiki health plan",
+      "expected_output": "After a plan exists: does only steps 1 and 2, moves archived text word for word without rewriting it, deletes no notes, reruns the audit and shows the summary line before and after.",
+      "files": []
+    }
+  ]
+}

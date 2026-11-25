@@ -1,0 +1,19 @@
+{
+  "name": "wiki-health",
+  "version": "1.0.0",
+  "description": "Audits a Markdown wiki, Obsidian vault or docs folder: file sizes against budgets, orphaned notes and broken links or headings, then a numbered fix plan that changes nothing until you approve.",
+  "author": {
+    "name": "Kelvin Wilch"
+  },
+  "license": "MIT",
+  "keywords": [
+    "wiki",
+    "obsidian",
+    "docs",
+    "markdown",
+    "links",
+    "context"
+  ],
+  "repository": "https://github.com/Wilch-Kelvin/skills4u",
+  "homepage": "https://github.com/Wilch-Kelvin/skills4u/tree/main/wiki-health"
+}
