@@ -4,8 +4,8 @@
     "name": "Kelvin Wilch"
   },
   "metadata": {
-    "description": "General-purpose Claude Code skills and agents for documenting projects and designing distinctive, accessible UI.",
-    "version": "1.0.0"
+    "description": "General-purpose Claude Code skills and agents for documenting projects, designing distinctive UI, and keeping docs and agent setups healthy.",
+    "version": "1.1.0"
   },
   "plugins": [
     {
@@ -35,6 +35,33 @@
         "accessibility",
         "review",
         "mobile"
+      ]
+    },
+    {
+      "name": "wiki-health",
+      "source": "./wiki-health",
+      "description": "Audits a Markdown wiki, Obsidian vault or docs folder for oversized files, orphans and broken links, then plans fixes.",
+      "version": "1.0.0",
+      "category": "documentation",
+      "keywords": [
+        "wiki",
+        "obsidian",
+        "docs",
+        "markdown",
+        "links"
+      ]
+    },
+    {
+      "name": "inventory-auditor",
+      "source": "./inventory-auditor",
+      "description": "Audits your skills, subagents and hooks for context cost, usage, duplicates and overlap, with evidence-backed verdicts.",
+      "version": "1.0.0",
+      "category": "productivity",
+      "keywords": [
+        "skills",
+        "agents",
+        "context",
+        "audit"
       ]
     }
   ]
